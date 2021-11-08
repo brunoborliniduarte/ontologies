@@ -1,0 +1,211 @@
+@prefix : <http://purl.org/nemo/osdef#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix xml: <http://www.w3.org/XML/1998/namespace> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@base <http://purl.org/brunoborliniduarte/osdef#> .
+
+<http://purl.org/brunoborliniduarte/osdef#> rdf:type owl:Ontology ;
+                                             owl:imports <http://purl.org/nemo/gufo#> .
+
+#################################################################
+#    Object Properties
+#################################################################
+
+###  http://purl.org/brunoborliniduarte/osdef#causes
+:causes rdf:type owl:ObjectProperty ;
+        rdfs:subPropertyOf owl:topObjectProperty ;
+        rdfs:domain <http://purl.org/nemo/gufo#Event> ;
+        rdfs:range <http://purl.org/nemo/gufo#Event> .
+
+
+###  http://purl.org/brunoborliniduarte/osdef#isManifestationOf
+:isManifestationOf rdf:type owl:ObjectProperty ;
+                   rdfs:domain <http://purl.org/nemo/gufo#Event> ;
+                   rdfs:range <http://purl.org/nemo/gufo#IntrinsicAspect> .
+
+
+###  http://purl.org/brunoborliniduarte/osdef#performs
+:performs rdf:type owl:ObjectProperty ;
+          rdfs:subPropertyOf owl:topObjectProperty ;
+          rdfs:domain <http://purl.org/nemo/gufo#Agent> ;
+          rdfs:range <http://purl.org/nemo/gufo#Action> .
+
+
+###  http://purl.org/brunoborliniduarte/osdef#stemsFrom
+:stemsFrom rdf:type owl:ObjectProperty ;
+           rdfs:subPropertyOf owl:topObjectProperty ;
+           rdfs:domain :IntentionalUserGeneratedFailure ;
+           rdfs:range :UserMaliciousIntention .
+
+
+#################################################################
+#    Classes
+#################################################################
+
+###  http://purl.org/brunoborliniduarte/osdef#Defect
+:Defect rdf:type owl:Class ;
+        rdfs:subClassOf :Vulnerability .
+
+
+###  http://purl.org/brunoborliniduarte/osdef#ErroneousUserAction
+:ErroneousUserAction rdf:type owl:Class ;
+                     rdfs:subClassOf :UserAction .
+
+
+###  http://purl.org/brunoborliniduarte/osdef#Failure
+:Failure rdf:type owl:Class ;
+         rdfs:subClassOf <http://purl.org/nemo/gufo#Event> ;
+         owl:disjointWith <http://purl.org/nemo/gufo#Action> ,
+                          <http://purl.org/nemo/gufo#Participation> .
+
+
+###  http://purl.org/brunoborliniduarte/osdef#FailureState
+:FailureState rdf:type owl:Class ;
+              rdfs:subClassOf <http://purl.org/nemo/gufo#TemporaryRelationshipSituation> ;
+              owl:disjointWith :VulnerableState .
+
+
+###  http://purl.org/brunoborliniduarte/osdef#Fault
+:Fault rdf:type owl:Class ;
+       rdfs:subClassOf :Defect .
+
+
+###  http://purl.org/brunoborliniduarte/osdef#FaultManifestationFailure
+:FaultManifestationFailure rdf:type owl:Class ;
+                           rdfs:subClassOf :Failure ;
+                           owl:disjointWith :UserGeneratedFailure .
+
+
+###  http://purl.org/brunoborliniduarte/osdef#HardwareVulnerability
+:HardwareVulnerability rdf:type owl:Class ;
+                       rdfs:subClassOf :Vulnerability .
+
+
+###  http://purl.org/brunoborliniduarte/osdef#IntentionalUserGeneratedFailure
+:IntentionalUserGeneratedFailure rdf:type owl:Class ;
+                                 rdfs:subClassOf :UserGeneratedFailure ;
+                                 owl:disjointWith :NonIntentionalUserGeneratedFailure .
+
+
+###  http://purl.org/brunoborliniduarte/osdef#LoadedProgramVulnerability
+:LoadedProgramVulnerability rdf:type owl:Class ;
+                            rdfs:subClassOf :Vulnerability .
+
+
+###  http://purl.org/brunoborliniduarte/osdef#NonIntentionalUserGeneratedFailure
+:NonIntentionalUserGeneratedFailure rdf:type owl:Class ;
+                                    rdfs:subClassOf :UserGeneratedFailure .
+
+
+###  http://purl.org/brunoborliniduarte/osdef#UsageLimitVulnerability
+:UsageLimitVulnerability rdf:type owl:Class ;
+                         rdfs:subClassOf :Vulnerability .
+
+
+###  http://purl.org/brunoborliniduarte/osdef#User
+:User rdf:type owl:Class ;
+      rdfs:subClassOf <http://purl.org/brunoborliniduarte/spo#Stakeholder> .
+
+
+###  http://purl.org/brunoborliniduarte/osdef#UserAction
+:UserAction rdf:type owl:Class ;
+            rdfs:subClassOf <http://purl.org/nemo/gufo#Action> .
+
+
+###  http://purl.org/brunoborliniduarte/osdef#UserFalseBelief
+:UserFalseBelief rdf:type owl:Class ;
+                 rdfs:subClassOf <http://purl.org/nemo/gufo#IntrinsicMode> .
+
+
+###  http://purl.org/brunoborliniduarte/osdef#UserGeneratedFailure
+:UserGeneratedFailure rdf:type owl:Class ;
+                      rdfs:subClassOf :Failure .
+
+
+###  http://purl.org/brunoborliniduarte/osdef#UserMaliciousIntention
+:UserMaliciousIntention rdf:type owl:Class ;
+                        rdfs:subClassOf <http://purl.org/nemo/gufo#IntrinsicMode> .
+
+
+###  http://purl.org/brunoborliniduarte/osdef#Vulnerability
+:Vulnerability rdf:type owl:Class ;
+               rdfs:subClassOf <http://purl.org/nemo/gufo#IntrinsicMode> .
+
+
+###  http://purl.org/brunoborliniduarte/osdef#VulnerableState
+:VulnerableState rdf:type owl:Class ;
+                 rdfs:subClassOf <http://purl.org/nemo/gufo#TemporaryRelationshipSituation> .
+
+
+###  http://purl.org/brunoborliniduarte/spo#Hardware-Equipment
+<http://purl.org/brunoborliniduarte/spo#Hardware-Equipment> rdf:type owl:Class ;
+                                                            rdfs:subClassOf <http://purl.org/nemo/spo#Artifact> .
+
+
+###  http://purl.org/brunoborliniduarte/spo#Stakeholder
+<http://purl.org/brunoborliniduarte/spo#Stakeholder> rdf:type owl:Class ;
+                                                     rdfs:subClassOf <http://purl.org/nemo/gufo#Agent> .
+
+
+###  http://purl.org/brunoborliniduarte/swo#Program
+<http://purl.org/brunoborliniduarte/swo#Program> rdf:type owl:Class ;
+                                                 rdfs:subClassOf <http://purl.org/nemo/spo#Artifact> .
+
+
+###  http://purl.org/nemo/gufo#Action
+<http://purl.org/nemo/gufo#Action> rdf:type owl:Class ;
+                                   rdfs:subClassOf <http://purl.org/nemo/gufo#Event> ;
+                                   owl:disjointWith <http://purl.org/nemo/gufo#Participation> .
+
+
+###  http://purl.org/nemo/gufo#ActionType
+<http://purl.org/nemo/gufo#ActionType> rdf:type owl:Class ;
+                                       rdfs:subClassOf <http://purl.org/nemo/gufo#EventType> .
+
+
+###  http://purl.org/nemo/gufo#Agent
+<http://purl.org/nemo/gufo#Agent> rdf:type owl:Class ;
+                                  rdfs:subClassOf <http://purl.org/nemo/gufo#ConcreteIndividual> ;
+                                  rdfs:comment "Agents are substantials capable of bearing special kinds of moments named Intentional Moments. Agents can be physical (e.g., a person) or social (e.g., an organization, a society)." .
+
+
+###  http://purl.org/nemo/gufo#ConcreteIndividual
+<http://purl.org/nemo/gufo#ConcreteIndividual> rdf:type owl:Class .
+
+
+###  http://purl.org/nemo/gufo#Event
+<http://purl.org/nemo/gufo#Event> rdf:type owl:Class .
+
+
+###  http://purl.org/nemo/gufo#EventType
+<http://purl.org/nemo/gufo#EventType> rdf:type owl:Class .
+
+
+###  http://purl.org/nemo/gufo#FunctionalComplex
+<http://purl.org/nemo/gufo#FunctionalComplex> rdf:type owl:Class .
+
+
+###  http://purl.org/nemo/gufo#IntrinsicAspect
+<http://purl.org/nemo/gufo#IntrinsicAspect> rdf:type owl:Class .
+
+
+###  http://purl.org/nemo/gufo#IntrinsicMode
+<http://purl.org/nemo/gufo#IntrinsicMode> rdf:type owl:Class .
+
+
+###  http://purl.org/nemo/gufo#Participation
+<http://purl.org/nemo/gufo#Participation> rdf:type owl:Class .
+
+
+###  http://purl.org/nemo/gufo#TemporaryRelationshipSituation
+<http://purl.org/nemo/gufo#TemporaryRelationshipSituation> rdf:type owl:Class .
+
+
+###  http://purl.org/nemo/spo#Artifact
+<http://purl.org/nemo/spo#Artifact> rdf:type owl:Class ;
+                                    rdfs:subClassOf <http://purl.org/nemo/gufo#FunctionalComplex> .
+
+
+###  Generated by the OWL API (version 4.5.9.2019-02-01T07:24:44Z) https://github.com/owlcs/owlapi
